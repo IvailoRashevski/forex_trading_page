@@ -8,21 +8,25 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+  rate: boolean;
   USD: number;
   AUD: number;
   CAD: number;
   BGN: number;
   refreshInterval: number;
   changeInterval: number;
-  rate: boolean;
   rateGap = 0.0001;
+  decimalToDisplay = 4;
+  refreshIntervalTime = 5000;
+  changeIntervalTime = 60000;
+  stopUpdateRateTime = 300000;
 
   ngOnInit(): void {
     this.appService.getJSON().subscribe(data => {
-      this.USD = Number(data.rates.USD.toFixed(4));
-      this.AUD = Number(data.rates.AUD.toFixed(4));
-      this.CAD = Number(data.rates.CAD.toFixed(4));
-      this.BGN = Number(data.rates.BGN.toFixed(4));
+      this.USD = Number(data.rates.USD.toFixed(this.decimalToDisplay));
+      this.AUD = Number(data.rates.AUD.toFixed(this.decimalToDisplay));
+      this.CAD = Number(data.rates.CAD.toFixed(this.decimalToDisplay));
+      this.BGN = Number(data.rates.BGN.toFixed(this.decimalToDisplay));
     });
   }
 
@@ -31,23 +35,23 @@ export class AppComponent implements OnInit{
     ) {
     this.refreshInterval = window.setInterval(() => {
       if (this.rate) {
-        this.USD = Number((this.USD + this.rateGap).toFixed(4));
-        this.AUD = Number((this.AUD + this.rateGap).toFixed(4));
-        this.CAD = Number((this.CAD + this.rateGap).toFixed(4));
-        this.BGN = Number((this.BGN + this.rateGap).toFixed(4));
+        this.USD = Number((this.USD + this.rateGap).toFixed(this.decimalToDisplay));
+        this.AUD = Number((this.AUD + this.rateGap).toFixed(this.decimalToDisplay));
+        this.CAD = Number((this.CAD + this.rateGap).toFixed(this.decimalToDisplay));
+        this.BGN = Number((this.BGN + this.rateGap).toFixed(this.decimalToDisplay));
       } else {
-        this.USD = Number((this.USD - this.rateGap).toFixed(4));
-        this.AUD = Number((this.AUD - this.rateGap).toFixed(4));
-        this.CAD = Number((this.CAD - this.rateGap).toFixed(4));
-        this.BGN = Number((this.BGN - this.rateGap).toFixed(4));
+        this.USD = Number((this.USD - this.rateGap).toFixed(this.decimalToDisplay));
+        this.AUD = Number((this.AUD - this.rateGap).toFixed(this.decimalToDisplay));
+        this.CAD = Number((this.CAD - this.rateGap).toFixed(this.decimalToDisplay));
+        this.BGN = Number((this.BGN - this.rateGap).toFixed(this.decimalToDisplay));
       }
-    }, 5000);
+    }, this.refreshIntervalTime);
     this.changeInterval = window.setInterval(() => {
       this.rate = !this.rate;
-    }, 60000);
+    }, this.changeIntervalTime);
     setTimeout(() => {
       clearInterval(this.refreshInterval);
       clearInterval(this.changeInterval);
-    }, 300000);
+    }, this.stopUpdateRateTime);
   }
 }
