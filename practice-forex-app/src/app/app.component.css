@@ -1,0 +1,45 @@
+.foundation {
+  display: grid;
+  justify-content: center;
+  padding-top: 300px;
+}
+
+.rates {
+  display: grid;
+  align-items: end;
+  width: 800px;
+  height: 250px;
+  background-color: whitesmoke;
+  border: 3px solid black;
+}
+
+.rate-container {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  grid-template-columns: 50px 125px auto;
+  padding: 0 10px 10px 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.rate-color {
+  display: grid;
+  justify-content: end;
+}
+
+.rate-color > label {
+  color: white;
+}
+
+.rate-up {
+  background-color: green;
+}
+
+.rate-down {
+  background-color: red;
+}
+
+.currency-image {
+  width: 30px;
+  height: 30px;
+}

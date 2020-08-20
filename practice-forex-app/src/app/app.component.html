@@ -1,0 +1,48 @@
+<div class="foundation">
+  <article class="rates">
+    <section class="rate-container"> 
+      <img class="currency-image" src="../assets/eurusd.png" alt="eurusd image">
+      <div class="rate-currency">
+        <span>EURUSD</span>
+      </div>
+      <div class="rate-placeholder">
+        <div class="rate-color">
+          <label [ngClass]="{'rate-up': rate, 'rate-down': !rate}">{{ USD }}</label>
+        </div>
+      </div>
+    </section>
+    <section class="rate-container">
+      <img class="currency-image" src="../assets/euraud.png" alt="euraud image">
+      <div class="rate-currency">
+        <span>EURAUD</span>
+      </div>
+      <div class="rate-placeholder">
+        <div class="rate-color">
+          <label [ngClass]="{'rate-up': rate, 'rate-down': !rate}">{{ AUD }}</label>
+        </div>
+      </div>
+    </section>
+    <section class="rate-container">
+      <img class="currency-image" src="../assets/eurcad.png" alt="eurcad image">
+      <div class="rate-currency">
+        <span>EURCAD</span>
+      </div>
+      <div class="rate-placeholder">
+        <div class="rate-color">
+          <label [ngClass]="{'rate-up': rate, 'rate-down': !rate}">{{ CAD }}</label>
+        </div>
+      </div>
+    </section>
+    <section class="rate-container">
+      <img class="currency-image" src="../assets/eurbgn.png" alt="eurbgn image">
+      <div class="rate-currency">
+        <span>EURBGN</span>
+      </div>
+      <div class="rate-placeholder">
+        <div class="rate-color">
+          <label [ngClass]="{'rate-up': rate, 'rate-down': !rate}">{{ BGN }}</label>
+        </div>
+      </div>
+    </section>
+  </article>
+</div>
